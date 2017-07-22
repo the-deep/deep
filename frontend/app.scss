@@ -1,0 +1,11 @@
+p {
+    color: #f00;
+
+    &.para {
+        font-size: 200px;
+    }
+
+    b {
+        font-weight: normal;
+    }
+}

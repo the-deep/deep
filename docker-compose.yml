@@ -1,0 +1,22 @@
+version: '3'
+
+
+services:
+    db:
+        image: postgres
+    backend:
+        image: deep
+        command: /bin/bash -c 'source /venv/bin/activate && python manage.py runserver 0.0.0.0:8000'
+        volumes:
+            - .:/code
+        ports:
+            - '8000:8000'
+        depends_on:
+            - db
+            - frontend
+    frontend:
+        build: .
+        image: deep
+        volumes:
+            - .:/code
+        command: /bin/bash -c './node_modules/.bin/webpack --watch --config webpack.config.js'
